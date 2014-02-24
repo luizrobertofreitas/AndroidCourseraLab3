@@ -69,7 +69,7 @@ public class ActivityLoaderActivity extends Activity {
 		Intent explicityIntent = new Intent(this, ExplicitlyLoadedActivity.class);
 		
 		// TODO - Start an Activity using that intent and the request code defined above
-		startActivityForResult(explicityIntent, 100);
+		startActivityForResult(explicityIntent, GET_TEXT_REQUEST_CODE);
 
 	}
 
@@ -92,7 +92,7 @@ public class ActivityLoaderActivity extends Activity {
 		
 		Log.i(TAG,"Chooser Intent Action:" + chooserIntent.getAction());
 		// TODO - Start the chooser Activity, using the chooser intent
-		startActivity(Intent.createChooser(chooserIntent, "Load http://www.google.com with:"));
+		startActivity(Intent.createChooser(chooserIntent, CHOOSER_TEXT));
 
 	}
 
@@ -105,7 +105,7 @@ public class ActivityLoaderActivity extends Activity {
 		// RESULT_OK result code and a recognized request code
 		// If so, update the Textview showing the user-entered text.
 		
-		if (requestCode == 100 && resultCode == RESULT_OK) {
+		if (requestCode == GET_TEXT_REQUEST_CODE && resultCode == RESULT_OK) {
 			mUserTextView.setText(data.getStringExtra("extra_message"));
 		}
 
