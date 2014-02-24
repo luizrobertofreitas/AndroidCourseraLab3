@@ -66,9 +66,10 @@ public class ActivityLoaderActivity extends Activity {
 		Log.i(TAG,"Entered startExplicitActivation()");
 		
 		// TODO - Create a new intent to launch the ExplicitlyLoadedActivity class
+		Intent explicityIntent = new Intent(this, ExplicitlyLoadedActivity.class);
 		
 		// TODO - Start an Activity using that intent and the request code defined above
-
+		startActivityForResult(explicityIntent, 100);
 
 	}
 
@@ -87,11 +88,11 @@ public class ActivityLoaderActivity extends Activity {
 		// chooserIntent variable below. HINT: using the Intent class' 
 		// createChooser())
 		
-		Intent chooserIntent = null;
-
+		Intent chooserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+		
 		Log.i(TAG,"Chooser Intent Action:" + chooserIntent.getAction());
 		// TODO - Start the chooser Activity, using the chooser intent
-		startActivity(chooserIntent);
+		startActivity(Intent.createChooser(chooserIntent, "Load http://www.google.com with:"));
 
 	}
 
@@ -103,6 +104,10 @@ public class ActivityLoaderActivity extends Activity {
 		// TODO - Process the result only if this method received both a
 		// RESULT_OK result code and a recognized request code
 		// If so, update the Textview showing the user-entered text.
+		
+		if (requestCode == 100 && resultCode == RESULT_OK) {
+			mUserTextView.setText(data.getStringExtra("extra_message"));
+		}
 
 
 	}
